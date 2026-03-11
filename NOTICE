@@ -1,0 +1,29 @@
+sam-prompt includes code derived from Meta's Segment Anything materials (SAM Materials).
+
+Upstream attribution
+- Publisher: Meta Platforms, Inc. and affiliates
+- Upstream project family: Segment Anything (SAM)
+
+License and redistribution
+- This repository distributes SAM Materials and derivative works under the SAM License in LICENSE.
+- When redistributing this repository or derivative works, include LICENSE and this NOTICE file.
+- Use and redistribution are subject to restrictions in LICENSE, including applicable law and trade control constraints.
+
+Local modifications
+- Python package layout and project configuration for sam-prompt
+- API/module restructuring for prompt-based segmentation workflows
+- Example notebook integration
+
+Provenance mapping (best effort)
+- Local path: sam_prompt/model_builder.py
+	Upstream area: Segment Anything model construction code in the facebookresearch Segment Anything project family
+- Local path: sam_prompt/model/*.py
+	Upstream area: Segment Anything model components in the facebookresearch Segment Anything project family
+
+Upstream references
+- https://github.com/facebookresearch/segment-anything
+- https://huggingface.co/facebook/sam3
+
+Commit pin status
+- Exact upstream commit hashes are not currently pinned in this repository.
+- For strict audit requirements, add a per-file mapping that includes upstream repository path and commit hash.
