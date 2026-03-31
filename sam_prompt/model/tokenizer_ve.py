@@ -18,7 +18,6 @@ from typing import List, Optional, Union
 import ftfy
 import regex as re
 import torch
-from iopath.common.file_io import g_pathmgr
 
 
 # https://stackoverflow.com/q/62691279
@@ -135,7 +134,7 @@ class SimpleTokenizer(object):
     ):
         self.byte_encoder = bytes_to_unicode()
         self.byte_decoder = {v: k for k, v in self.byte_encoder.items()}
-        with g_pathmgr.open(bpe_path, "rb") as fh:
+        with open(bpe_path, "rb") as fh:
             bpe_bytes = io.BytesIO(fh.read())
             merges = gzip.open(bpe_bytes).read().decode("utf-8").split("\n")
         # merges = gzip.open(bpe_path).read().decode("utf-8").split("\n")
