@@ -31,7 +31,9 @@ from PIL import Image
 
 
 def get_bpe_path() -> str:
-    with as_file(files("sam_prompt").joinpath("assets/bpe_simple_vocab_16e6.txt.gz")) as p:
+    with as_file(
+        files("sam_prompt").joinpath("assets/bpe_simple_vocab_16e6.txt.gz")
+    ) as p:
         return str(p)
 
 
@@ -342,12 +344,7 @@ def _load_checkpoint(model, checkpoint_path):
     sam3_image_ckpt = {
         k.replace("detector.", ""): v for k, v in ckpt.items() if "detector" in k
     }
-    missing_keys, _ = model.load_state_dict(sam3_image_ckpt, strict=False)
-    if len(missing_keys) > 0:
-        print(
-            f"loaded {checkpoint_path} and found "
-            f"missing and/or unexpected keys:\n{missing_keys=}"
-        )
+    model.load_state_dict(sam3_image_ckpt, strict=False)
 
 
 def _setup_device_and_mode(model, device, eval_mode):
@@ -429,14 +426,7 @@ def build_sam3_image_model(
 
 
 def download_ckpt_from_hf(token: str | None) -> str:
-    SAM3_MODEL_ID = "facebook/sam3"
-    SAM3_CKPT_NAME = "sam3.pt"
-    SAM3_CFG_NAME = "config.json"
-    _ = hf_hub_download(repo_id=SAM3_MODEL_ID, filename=SAM3_CFG_NAME, token=token)
-    checkpoint_path = hf_hub_download(
-        repo_id=SAM3_MODEL_ID, filename=SAM3_CKPT_NAME, token=token
-    )
-    return checkpoint_path
+    return hf_hub_download(repo_id="facebook/sam3.1", filename="sam3.1_multiplex.pt")
 
 
 @lru_cache(maxsize=1)
